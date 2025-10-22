@@ -19,10 +19,16 @@ public class ProxyController {
 
     @GetMapping("/catalan")
     public String catalan(@RequestParam(defaultValue = "10") String value) throws IOException {
+        String result;
         try {
-            return HttpConnectionExample.httpConnection(URL1 + "?value=" + value);
+            result = HttpConnectionExample.httpConnection(URL1 + "?value=" + value);
+            System.out.println("Server 1 connected");
+            return result;
+            
         } catch (ConnectException e) {
-            return HttpConnectionExample.httpConnection(URL2 + "?value=" + value);
+            result = HttpConnectionExample.httpConnection(URL2 + "?value=" + value);
+            System.out.println("Server 2 connected");
+            return result;
         }
     }
 }
