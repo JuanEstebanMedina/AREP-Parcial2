@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.HttpRetryException;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -12,7 +12,7 @@ public class HttpConnectionExample {
 
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    public static String httpConnection(String url) throws IOException, HttpRetryException {
+    public static String httpConnection(String url) throws IOException, ConnectException {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -42,7 +42,7 @@ public class HttpConnectionExample {
             return result;
         } else {
             System.out.println("GET request not worked to " + url);
-            throw new HttpRetryException("GET request not worked", responseCode);
+            throw new ConnectException("GET request not worked");
         }
     }
 }
