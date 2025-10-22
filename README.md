@@ -33,3 +33,26 @@ Diseñe un prototipo de sistema de microservicios que tenga un servicio (En la f
 ### Despliegue Aplicación Web Minima
 
 <img src="img/miminalWebApp.png">
+
+
+### Implementación Programación Dinámica
+
+```java
+private static final HashMap<Integer, Integer> resultsMap = new HashMap<>();
+
+private int catalanNumber(int value) {
+    if (value == 0)
+        return 1;
+
+    if (resultsMap.containsKey(value))
+        return resultsMap.get(value);
+
+    int sum = 0;
+    for (int i = 0; i < value; i++) {
+        sum += (catalanNumber(i) * catalanNumber(value - 1 - i));
+    }
+
+    resultsMap.put(value, sum);
+    return sum;
+}
+```
