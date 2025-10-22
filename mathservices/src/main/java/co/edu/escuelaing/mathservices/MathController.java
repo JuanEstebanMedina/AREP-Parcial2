@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MathController {
 
-    private static final HashMap<Integer, String> results = new HashMap<>();
+    private static final HashMap<Integer, Integer> resultsMap = new HashMap<>();
 
     @GetMapping("/catalan")
     public MathServiceResponse catalan(@RequestParam(defaultValue = "10") int value) {
@@ -27,7 +27,7 @@ public class MathController {
             if (i < value)
                 sb.append(", ");
         }
-
+        System.out.println("map: " + resultsMap);
         return sb.toString();
     }
 
@@ -35,11 +35,15 @@ public class MathController {
         if (value == 0)
             return 1;
 
+        if (resultsMap.containsKey(value))
+            return resultsMap.get(value);
+
         int sum = 0;
         for (int i = 0; i < value; i++) {
             sum += (catalanNumber(i) * catalanNumber(value - 1 - i));
         }
 
+        resultsMap.put(value, sum);
         return sum;
     }
 }
