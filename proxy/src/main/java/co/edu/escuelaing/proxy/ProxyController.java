@@ -24,7 +24,7 @@ public class ProxyController {
             result = HttpConnectionExample.httpConnection(URL1 + "?value=" + value);
             System.out.println("Server 1 connected");
             return result;
-            
+
         } catch (ConnectException e) {
             result = HttpConnectionExample.httpConnection(URL2 + "?value=" + value);
             System.out.println("Server 2 connected");
