@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MathController {
 
-    @GetMapping("/greeting")
+    @GetMapping("/catalan")
     public MathServiceResponse catalan(@RequestParam(defaultValue = "10") int value) {
         return new MathServiceResponse("Secuencia de Catalan", value, catalanSecuence(value));
     }

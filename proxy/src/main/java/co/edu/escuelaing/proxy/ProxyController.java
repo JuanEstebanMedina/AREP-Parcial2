@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProxyController {
 
-    private static final String URL1 = "http://localhost:8081/catalan ";
+    private static final String URL1 = "http://localhost:8081/catalan";
     private static final String URL2 = "http://localhost:8082/catalan";
 
     // EC2 instances
@@ -18,10 +18,10 @@ public class ProxyController {
     // private static final String URL2 = "http://52.90.160.34:8081/catalan";
 
     @GetMapping("/catalan")
-    public String catalan(@RequestParam(defaultValue = "10") int value) throws ConnectException, IOException {
+    public String catalan(@RequestParam(defaultValue = "10") String value) throws IOException {
         try {
             return HttpConnectionExample.httpConnection(URL1 + "?value=" + value);
-        } catch (Exception e) {
+        } catch (ConnectException e) {
             return HttpConnectionExample.httpConnection(URL2 + "?value=" + value);
         }
     }
